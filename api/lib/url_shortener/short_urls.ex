@@ -2,7 +2,7 @@ defmodule UrlShortener.ShortUrls do
   alias UrlShortener.ShortUrls.{SlugGenerator, ShortUrl}
   alias UrlShortener.Repo
   
-  def create_short_url(url) do
+  def create(url) do
     slug = SlugGenerator.generate()
 
     %ShortUrl{}
@@ -10,7 +10,7 @@ defmodule UrlShortener.ShortUrls do
     |> Repo.insert()
   end
 
-  def get_url(slug) do
-    Repo.get_by(ShortUrl, slug: slug)
+  def get!(slug) do
+    Repo.get_by!(ShortUrl, slug: slug)
   end
 end

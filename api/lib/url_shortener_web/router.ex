@@ -7,6 +7,8 @@ defmodule UrlShortenerWeb.Router do
 
   scope "/api", UrlShortenerWeb do
     pipe_through :api
+    post "/short_url", ShortUrlController, :create
+    get "/short_url/:slug", ShortUrlController, :show
   end
 
   # Enables LiveDashboard only for development

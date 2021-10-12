@@ -1,6 +1,7 @@
 defmodule UrlShortener.ShortUrls.ShortUrl do
     use Ecto.Schema
     import Ecto.Changeset
+    @derive {Jason.Encoder, only: [:url, :slug]}
 
     schema "short_urls" do
         field :url, :string

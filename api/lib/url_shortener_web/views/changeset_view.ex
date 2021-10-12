@@ -17,5 +17,3 @@ defmodule UrlShortenerWeb.ChangesetView do
     %{errors: translate_errors(changeset)}
   end
 end
-
-end
