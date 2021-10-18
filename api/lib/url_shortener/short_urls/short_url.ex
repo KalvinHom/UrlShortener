@@ -37,4 +37,6 @@ defmodule UrlShortener.ShortUrls.ShortUrl do
         {:error, _} -> :error
     end
   end
+  
+  defp validate_host(_), do: :error
 end
