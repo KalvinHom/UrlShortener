@@ -1,6 +1,8 @@
 .URLForm {
-  display: flex;
-  flex-direction: row;
+  .url-form{
+    display: flex;
+    flex-direction: row;
+  }
   .url-input {
     display: flex;
     flex-direction: column;
@@ -8,6 +10,17 @@
   input {
     height: 25px;
     width: 300px;
+
+    
+    &.error {
+      border: 1px solid red;
+    }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+
   }
 
   button {

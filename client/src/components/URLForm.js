@@ -1,73 +1,73 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import ShortURLsTable from "./ShortURLsTable";
+import validateUrl from "../utils/validate_url";
+import { create } from "../api";
 import "./URLForm.scss";
 
+const urlError = "Invalid URL";
+const unexpectedError = "Sorry we've encountered an error. Please try again.";
 function URLForm() {
-
-
-  const [urlInput, setUrlInput] = useState(
-    {
-      touched: false,
-      url: '',
-      error: false
-    }
-  )
+  const [urlInput, setUrlInput] = useState("");
+  const [touched, setTouched] = useState(false);
+  const [error, setError] = useState(null);
+  const [shortURLs, setShortURLs] = useState([]);
 
   useEffect(() => {
+    if (!touched) return;
 
-    function validate(url) {
-      console.log("validating")
-      let error = false;
-  
-      try {
-        const validUrl = new URL(url)
-        error = validUrl.protocol !== "http:" && validUrl.protocol !== "https:"
-      } catch (_) {
-        error = true;
-      }
-      
-      setUrlInput({ ...urlInput, error: error });
-  
+    const valid = validateUrl(urlInput);
+    if (valid) {
+      setError(null);
+    } else {
+      setError(urlError);
     }
-    
-    console.log("changed");
-    if(urlInput.touched) 
-      validate(urlInput.url);
-  }, [urlInput.url, urlInput.touched])
-
-  
+  }, [urlInput, touched]);
 
   function handleBlur() {
-    setUrlInput({ ...urlInput, touched: true })    
+    if (!touched) setTouched(true);
   }
 
   function handleChange(e) {
-    const url = e.target.value
-    setUrlInput({ ...urlInput, url: url })
-    console.log(urlInput.touched)
-    // if (urlInput.touched)
-    //   validate(url)
+    const url = e.target.value;
+    setUrlInput(url);
   }
 
-  const { error } = urlInput;
-
-
+  function handleSubmit(e) {
+    e.preventDefault();
+    const error = !validateUrl(urlInput);
+    if (error) return setError(urlError);
+    create(urlInput)
+      .then(function (response) {
+        if (response.status === 201) {
+          setShortURLs([...shortURLs, response.data]);
+        } else {
+          setError(urlError);
+        }
+      })
+      .catch(function (_error) {
+        setError(unexpectedError);
+      });
+  }
 
   return (
     <div className="URLForm">
-      <div className="url-input">
-        <input
-        placeholder="http://kalvinhom.com"
-        type="text"
-        value={urlInput.url}
-        onBlur={handleBlur}
-        onChange={handleChange}
-      />
-        <div>{error && "Invalid URL"}</div>
-      </div>
-      <button>Generate Short Url</button>
+      <form className="url-form" onSubmit={handleSubmit}>
+        <div className="url-input">
+          <input
+            placeholder="http://kalvinhom.com"
+            type="text"
+            value={urlInput}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            className={!!error ? "error" : ""}
+          />
+          <div className="error-message">{error}</div>
+        </div>
+        <button type="submit">Generate Short Url</button>
+      </form>
+      <ShortURLsTable shortURLs={shortURLs} />
     </div>
-  )
-
+  );
 }
 
 export default URLForm;

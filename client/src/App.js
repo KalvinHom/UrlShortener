@@ -1,10 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
-import './App.css';
-import Home from './components/Home.js'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./App.css";
+import Home from "./components/Home.js";
 
 function App() {
   return (
@@ -15,7 +11,6 @@ function App() {
         </Route>
       </Switch>
     </Router>
-
   );
 }
 
