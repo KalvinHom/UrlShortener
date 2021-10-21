@@ -9,7 +9,9 @@ function ShortURLsResult({ shortURLs }) {
     <div className="ShortURLsResult">
       <h2>Your new short URL is:</h2>
       <div>{newURL}</div>
-      <CopyButton url={newURL} />
+      <div>
+        <CopyButton url={newURL} />
+      </div>
       <ShortURLsTable shortURLs={shortURLs} />
     </div>
   );

@@ -68,6 +68,7 @@ function URLForm() {
         </div>
         <button type="submit">Generate Short Url</button>
       </form>
+      <hr />
       <ShortURLsResult shortURLs={shortURLs} />
     </div>
   );
