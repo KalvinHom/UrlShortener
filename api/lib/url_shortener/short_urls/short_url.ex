@@ -17,11 +17,11 @@ defmodule UrlShortener.ShortUrls.ShortUrl do
 
   defp validate_url(field, value) do
     value
-    |> URI.parse
+    |> URI.parse()
     |> validate_scheme
     |> validate_host
     |> case do
-      :error -> [{:url, "Invalid URL"}]
+      :error -> [{field, "Invalid URL"}]
       _ -> []
     end
   end
@@ -32,11 +32,11 @@ defmodule UrlShortener.ShortUrls.ShortUrl do
   defp validate_scheme(_), do: :error
 
   defp validate_host(%URI{host: host} = uri) do
-    case :inet.gethostbyname(Kernel.to_charlist host) do
-        {:ok, _} -> uri
-        {:error, _} -> :error
+    case :inet.gethostbyname(Kernel.to_charlist(host)) do
+      {:ok, _} -> uri
+      {:error, _} -> :error
     end
   end
-  
+
   defp validate_host(_), do: :error
 end
