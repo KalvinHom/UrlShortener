@@ -1,0 +1,17 @@
+.FlashMessage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  .message {
+    background-color: #20c997;
+    // border: 1px solid black;
+    color: white;
+    font-weight: 800;
+    padding: 12px 24px;
+
+    display: inline-block;
+  }
+}

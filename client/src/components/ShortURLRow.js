@@ -1,11 +1,16 @@
 import React from "react";
+import CopyButton from "./CopyButton";
+import "./ShortURLRow.scss";
 
 function ShortURLRow({ shortURL }) {
-  console.log(window.location.host);
+  const fullURL = `${window.location.host}/${shortURL.slug}`;
   return (
     <tr>
-      <td>{`${window.location.host}/${shortURL.slug}`}</td>
+      <td>{fullURL}</td>
       <td>{shortURL.url}</td>
+      <td>
+        <CopyButton url={fullURL} />
+      </td>
     </tr>
   );
 }

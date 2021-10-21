@@ -1,0 +1,25 @@
+.ShortURLsTable {
+  margin-top: 14px;
+  max-width: 80%;
+  table {
+    table-layout: fixed;
+    width: 100%;
+
+    .copy-button-column {
+      width: 100px;
+    }
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    word-wrap: break-word;
+  }
+}

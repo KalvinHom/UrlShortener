@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ShortURLsTable from "./ShortURLsTable";
+import ShortURLsResult from "./ShortURLsResult";
 import validateUrl from "../utils/validate_url";
 import { create } from "../api";
 import "./URLForm.scss";
@@ -12,10 +12,13 @@ function URLForm() {
   const [error, setError] = useState(null);
   const [shortURLs, setShortURLs] = useState([]);
 
+  function validate(url) {
+    return validateUrl(url.trim());
+  }
   useEffect(() => {
     if (!touched) return;
 
-    const valid = validateUrl(urlInput);
+    const valid = validate(urlInput);
     if (valid) {
       setError(null);
     } else {
@@ -34,9 +37,9 @@ function URLForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const error = !validateUrl(urlInput);
+    const error = !validate(urlInput);
     if (error) return setError(urlError);
-    create(urlInput)
+    create(urlInput.trim())
       .then(function (response) {
         if (response.status === 201) {
           setShortURLs([...shortURLs, response.data]);
@@ -65,7 +68,7 @@ function URLForm() {
         </div>
         <button type="submit">Generate Short Url</button>
       </form>
-      <ShortURLsTable shortURLs={shortURLs} />
+      <ShortURLsResult shortURLs={shortURLs} />
     </div>
   );
 }
