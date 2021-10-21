@@ -8,7 +8,6 @@ function FlashProvider({ children }) {
     clearTimeout(timer);
     setTimer(setTimeout(() => setMessage(null), 3000));
   }
-  console.log(children);
   return (
     <FlashContext.Provider value={{ flashMessage, setFlashMessage }}>
       {children}

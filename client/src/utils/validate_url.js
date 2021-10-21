@@ -1,5 +1,4 @@
 function validateUrl(url) {
-  console.log("validating");
   let valid = true;
 
   valid = validateWhitespace(url);
