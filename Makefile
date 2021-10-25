@@ -20,6 +20,7 @@ build:
 
 build-server:
 	cd api; \
+	MIX_ENV=prod mix compile; \
 	MIX_ENV=prod mix release --overwrite
 
 build-client:
