@@ -13,7 +13,7 @@ config :url_shortener, UrlShortenerWeb.Endpoint,
   url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80]
 
 config :url_shortener,
-  cors_origin: ["https://urlshortener-client.onrender.com"]
+  cors_origin: [~r/https?.*onrender\.com$/]
 
 # Do not print debug messages in production
 config :logger, level: :info
