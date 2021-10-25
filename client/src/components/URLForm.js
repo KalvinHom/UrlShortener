@@ -42,7 +42,7 @@ function URLForm() {
     create(urlInput.trim())
       .then(function (response) {
         if (response.status === 201) {
-          setShortURLs([...shortURLs, response.data]);
+          setShortURLs([response.data, ...shortURLs]);
         } else {
           setError(urlError);
         }
@@ -63,10 +63,15 @@ function URLForm() {
             onBlur={handleBlur}
             onChange={handleChange}
             className={!!error ? "error" : ""}
+            data-cy="url-input"
           />
-          <div className="error-message">{error}</div>
+          <div className="error-message" data-cy="url-error">
+            {error}
+          </div>
         </div>
-        <button type="submit">Generate Short Url</button>
+        <button type="submit" data-cy="url-submit">
+          Generate Short Url
+        </button>
       </form>
       <ShortURLsResult shortURLs={shortURLs} />
     </div>

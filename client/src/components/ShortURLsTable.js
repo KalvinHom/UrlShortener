@@ -7,7 +7,7 @@ function ShortURLsTable({ shortURLs }) {
   return (
     <div className="ShortURLsTable">
       <h2>Previous URLs </h2>
-      <table>
+      <table data-cy="urls-table">
         <thead>
           <tr>
             <th>Short URL</th>
