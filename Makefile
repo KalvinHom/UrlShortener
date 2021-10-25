@@ -26,7 +26,9 @@ build-server:
 	MIX_ENV=prod mix release --overwrite;
 
 build-client:
-	cd client && yarn build
+	cd client; \
+	yarn; \
+	yarn build;
 
 # `make test` will be used after `make setup` in order to run
 # your test suite.
