@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const host = "http://localhost:4000";
+const host = process.env.REACT_APP_HOST_URL;
 
 export function create(url) {
   return axios.post(`${host}/api/short_url`, { url: url });
