@@ -2,13 +2,17 @@ defmodule UrlShortenerWeb.Router do
   use UrlShortenerWeb, :router
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/api", UrlShortenerWeb do
-    pipe_through :api
-    post "/short_url", ShortUrlController, :create
-    get "/short_url/:slug", ShortUrlController, :show
+    pipe_through(:api)
+    post("/short_url", ShortUrlController, :create)
+    get("/short_url/:slug", ShortUrlController, :show)
+  end
+
+  scope "/", UrlShortenerWeb do
+    get("/healthCheck", HealthCheckController, :show)
   end
 
   # Enables LiveDashboard only for development
@@ -22,8 +26,8 @@ defmodule UrlShortenerWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: UrlShortenerWeb.Telemetry
+      pipe_through([:fetch_session, :protect_from_forgery])
+      live_dashboard("/dashboard", metrics: UrlShortenerWeb.Telemetry)
     end
   end
 
@@ -33,9 +37,9 @@ defmodule UrlShortenerWeb.Router do
   # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
-      pipe_through [:fetch_session, :protect_from_forgery]
+      pipe_through([:fetch_session, :protect_from_forgery])
 
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
+      forward("/mailbox", Plug.Swoosh.MailboxPreview)
     end
   end
 end
