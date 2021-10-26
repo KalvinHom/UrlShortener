@@ -2,7 +2,9 @@
 
 describe("shorten urls", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000");
+    console.log(Cypress.env());
+
+    cy.visit(Cypress.env().baseUrl);
   });
 
   it("displays page with title", () => {
@@ -42,7 +44,7 @@ describe("shorten urls", () => {
       });
   });
 
-  it("shows multiple URLs and can copy the last one", () => {
+  it("shows multiple URLs", () => {
     cy.get("[data-cy=url-input]").type("http://google.com");
     cy.get("[data-cy=url-submit]").click();
     cy.get("[data-cy=url-input]").clear();
@@ -62,6 +64,7 @@ describe("shorten urls", () => {
     cy.get("[data-cy=urls-table")
       .find("tbody")
       .find("td")
+      .should("have.length", 6)
       .then((tds) => {
         expect(tds[1]).to.contain("http://www.stord.com");
       });
