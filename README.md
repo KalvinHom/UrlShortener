@@ -2,13 +2,13 @@
 
 ## Dependencies
 
-Elixir - tested on 1.12.2
+Elixir - 1.12.2
 
-Erlang - tested on 22.2
+Erlang - 22.2
 
 (Versions specified in .tool-versions for asdf version manager)
 
-Postgres - tested on 12
+Postgres - 12
 
 ## Running Locally
 
