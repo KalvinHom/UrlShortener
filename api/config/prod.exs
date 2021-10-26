@@ -12,8 +12,10 @@ import Config
 config :url_shortener, UrlShortenerWeb.Endpoint,
   url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80]
 
-config :url_shortener,
-  cors_origin: [~r/https?.*onrender\.com$/]
+config :cors_plug,
+  origin: [~r/.*urlshortener\-client\.onrender\.com$/, "https://urlshortener.kalvinhom.dev"],
+  max_age: 86400,
+  methods: ["GET", "POST"]
 
 # Do not print debug messages in production
 config :logger, level: :info

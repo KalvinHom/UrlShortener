@@ -44,10 +44,7 @@ defmodule UrlShortenerWeb.Endpoint do
     json_decoder: Phoenix.json_library()
   )
 
-  plug(
-    CORSPlug,
-    origin: Application.get_env(:url_shortener, :cors_origin)
-  )
+  plug(CORSPlug)
 
   plug(Plug.MethodOverride)
   plug(Plug.Head)

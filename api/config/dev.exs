@@ -25,8 +25,8 @@ config :url_shortener, UrlShortenerWeb.Endpoint,
   secret_key_base: "eFLjGN9qrdDpOgTUDnp3phhoB2dEz/FFAU6z6pc7Yc3Ft7ROb9esf3dZNJPl6XFB",
   watchers: []
 
-config :url_shortener,
-  cors_origin: ["http://localhost:3000"]
+config :cors_plug,
+  origin: ["http://localhost:3000"]
 
 # ## SSL Support
 #

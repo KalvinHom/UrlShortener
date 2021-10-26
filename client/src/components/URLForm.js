@@ -39,6 +39,7 @@ function URLForm() {
     e.preventDefault();
     const error = !validate(urlInput);
     if (error) return setError(urlError);
+    setError(null);
     create(urlInput.trim())
       .then(function (response) {
         if (response.status === 201) {
