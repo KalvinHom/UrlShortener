@@ -9,7 +9,7 @@ Dependencies:
 Running Locally:
 
 `make setup` to setup initial DB and get dependencies
-`make test` will run both backend and frontend tests
+`make test` will start both the API and frontend apps in the backround, run both backend and frontend tests, then shut the apps down.
 `make server` to start the Phoenix API server at `localhost:4000`
 `make client` to start the React application at `localhost:3000`
 
