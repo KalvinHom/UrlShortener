@@ -65,10 +65,10 @@ function URLForm() {
             onChange={handleChange}
             className={!!error ? "error" : ""}
             data-cy="url-input"
-            autocomplete="off"
-            autocorrect="off"
-            autocapitalize="off"
-            spellcheck="false"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
           />
           <div className="error-message" data-cy="url-error">
             {error}
